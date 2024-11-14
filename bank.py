@@ -4,7 +4,7 @@ from bank_account import BankAccount
 class Bank:
     def __init__(self, name):
         self.__accounts = {}
-        if type(name) != str:
+        if not isinstance(name, str):
             raise ValueError("Имя должно быть строчным значением!")
         self.name = name
         self.__not_found_account_error = "Счет не найден!"

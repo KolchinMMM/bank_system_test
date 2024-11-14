@@ -133,7 +133,7 @@ class TestIntegration(unittest.TestCase):
 		bank = Bank("myBank")
 		bank.create_account("1", "debit", 100, 20)
 		bank.delete_account("1")
-		self.assertEqual("1" not in bank.get_accounts_names(), True)
+		self.assertTrue("1" not in bank.get_accounts_names())
 
 	def test_delete_nonexistent_account(self):
 		bank = Bank("myBank")
@@ -152,7 +152,3 @@ class TestIntegration(unittest.TestCase):
 		bank.create_account("1", "debit", 100, 20)
 		with self.assertRaises(IndexError):
 			bank.get_account_credit_value("12")
-
-
-
-
