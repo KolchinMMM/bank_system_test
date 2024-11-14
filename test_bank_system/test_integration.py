@@ -133,7 +133,7 @@ class TestIntegration(unittest.TestCase):
 		bank = Bank("myBank")
 		bank.create_account("1", "debit", 100, 20)
 		bank.delete_account("1")
-		self.assertTrue("1" not in bank.get_accounts_names())
+		self.assertNotIn("1", bank.get_accounts_names())
 
 	def test_delete_nonexistent_account(self):
 		bank = Bank("myBank")
