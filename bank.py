@@ -4,9 +4,11 @@ from bank_account import BankAccount
 class Bank:
     def __init__(self, name):
         self.__accounts = {}
-        if not type(name) == str:
+        if type(name) != str:
             raise ValueError("Имя должно быть строчным значением!")
         self.name = name
+        self.__not_found_account_error = "Счет не найден!"
+
 
     def create_account(self, account_number, account_type, initial_balance=0, interest_rate=0):
         """Создать новый счет
@@ -30,7 +32,7 @@ class Bank:
         if account:
             account.deposit(amount)
         else:
-            raise IndexError("Счет не найден!")
+            raise IndexError(self.__not_found_account_error)
 
     def withdraw_from_account(self, account_number, amount):
         """Снимает деньги с указанного счета.
@@ -42,7 +44,7 @@ class Bank:
         if account:
             account.withdraw(amount)
         else:
-            raise IndexError("Счет не найден.")
+            raise IndexError(self.__not_found_account_error)
 
     def get_account_balance(self, account_number):
         """Вывести баланс по номеру счета"""
@@ -50,7 +52,7 @@ class Bank:
         if account:
             return account.get_balance()
         else:
-            raise IndexError("Счет не найден.")
+            raise IndexError(self.__not_found_account_error)
 
     def apply_interest_to_all_accounts(self):
         """Начислить проценты по всем счетам"""
@@ -62,7 +64,7 @@ class Bank:
         if account:
             account.apply_interest()
         else:
-            raise IndexError("Счет не найден.")
+            raise IndexError(self.__not_found_account_error)
 
     def set_account_interest_rate(self, account_number, rate):
         """Установить новую процентную ставку для указанного счета."""
@@ -70,21 +72,21 @@ class Bank:
         if account:
             account.set_interest_rate(rate)
         else:
-            raise IndexError("Аккаунт не существует")
+            raise IndexError(self.__not_found_account_error)
 
     def get_account_interest_rate(self, account_number):
         account = self.__accounts.get(account_number)
         if account:
             return account.get_interest_rate()
         else:
-            raise IndexError("Аккаунт не существует")
+            raise IndexError(self.__not_found_account_error)
 
     def delete_account(self, account_number):
         account = self.__accounts.get(account_number)
         if account:
             self.__accounts.pop(account_number)
         else:
-            raise IndexError("Аккаунт не существует")
+            raise IndexError(self.__not_found_account_error)
 
     def get_accounts_names(self):
         return list(self.__accounts.keys())
@@ -94,12 +96,12 @@ class Bank:
         if account:
             account.set_credit_value(value)
         else:
-            raise IndexError("Аккаунт не существует")
+            raise IndexError(self.__not_found_account_error)
 
     def get_account_credit_value(self, account_number):
         account = self.__accounts.get(account_number)
         if account:
             return account.get_credit_value()
         else:
-            raise IndexError("Аккаунт не существует")
+            raise IndexError(self.__not_found_account_error)
 

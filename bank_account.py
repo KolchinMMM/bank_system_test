@@ -11,7 +11,6 @@ class BankAccount:
             raise ValueError("account_type может быть только debit или credit")
         if interest_rate < 0:
             raise ValueError("interest_rate не меньше нуля")
-        self.__account_number = account_number
         self.__account_type = account_type
         self.__balance = initial_balance
         self.__interest_rate = interest_rate

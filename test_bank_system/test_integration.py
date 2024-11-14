@@ -147,6 +147,12 @@ class TestIntegration(unittest.TestCase):
 		bank.create_account("3", "debit", 100, 20)
 		self.assertEqual(bank.get_accounts_names(), ["1", "2", "3"])
 
+	def test_get_nonexistent_account_credit_value(self):
+		bank = Bank("myBank")
+		bank.create_account("1", "debit", 100, 20)
+		with self.assertRaises(IndexError):
+			bank.get_account_credit_value("12")
+
 
 
 

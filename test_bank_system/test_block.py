@@ -19,7 +19,7 @@ class TestBankAccount(unittest.TestCase):
 
 	def test_init_wrong_type(self):
 		with self.assertRaises(ValueError):
-			account = BankAccount("1", "abc")
+			BankAccount("1", "abc")
 
 	def test_deposit(self):
 		account = BankAccount("1", "debit")
@@ -129,17 +129,17 @@ class TestBankAccount(unittest.TestCase):
 	def test_cannot_get_private_fields(self):
 		account = BankAccount("1", "credit", 100, 10)
 		with self.assertRaises(AttributeError):
-			a = account.__balance
+			account.__balance
 		with self.assertRaises(AttributeError):
-			a = account.__account_number
+			account.__account_number
 		with self.assertRaises(AttributeError):
-			a = account.__initial_balance
+			account.__initial_balance
 		with self.assertRaises(AttributeError):
-			a = account.__interest_rate
+			account.__interest_rate
 
 	def test_init_interest_below_zero(self):
 		with self.assertRaises(ValueError):
-			account = BankAccount("1", "credit", 100, -10)
+			BankAccount("1", "credit", 100, -10)
 
 	def test_withdraw_negative(self):
 		account = BankAccount("1", "credit", 100, 10)
@@ -158,12 +158,12 @@ class TestBank(unittest.TestCase):
 
 	def test_create_bank_wrong_name(self):
 		with self.assertRaises(ValueError):
-			bank = Bank(True)
+			Bank(True)
 
 	def test_cannot_access_accounts(self):
 		bank = Bank("MyBank")
 		with self.assertRaises(AttributeError):
-			a = bank.__accounts
+			bank.__accounts
 
 	def test_deposit_to_nonexistent_account(self):
 		bank = Bank("MyBank")

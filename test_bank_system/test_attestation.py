@@ -39,7 +39,7 @@ class TestAttestation(unittest.TestCase):
 		bank = Bank("MyBank")
 		bank.create_account("1", "debit", 100, 20)
 
-		for i in range(20):
+		for _ in range(20):
 			bank.apply_interest_to_account("1")
 		print(bank.get_account_balance("1"))
 		self.assertAlmostEqual(bank.get_account_balance("1"), 100 * (1.2**20))
