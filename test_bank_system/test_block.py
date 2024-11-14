@@ -125,6 +125,7 @@ class TestBankAccount(unittest.TestCase):
 		with self.assertRaises(ValueError):
 			account.set_interest_rate(-5)
 
+
 	def test_cannot_get_private_fields(self):
 		account = BankAccount("1", "credit", 100, 10)
 		with self.assertRaises(AttributeError):
@@ -135,6 +136,15 @@ class TestBankAccount(unittest.TestCase):
 			a = account.__initial_balance
 		with self.assertRaises(AttributeError):
 			a = account.__interest_rate
+
+	def test_init_interest_below_zero(self):
+		with self.assertRaises(ValueError):
+			account = BankAccount("1", "credit", 100, -10)
+
+	def test_withdraw_negative(self):
+		account = BankAccount("1", "credit", 100, 10)
+		with self.assertRaises(ValueError):
+			account.withdraw(-10)
 
 
 class TestBank(unittest.TestCase):
@@ -154,3 +164,13 @@ class TestBank(unittest.TestCase):
 		bank = Bank("MyBank")
 		with self.assertRaises(AttributeError):
 			a = bank.__accounts
+
+	def test_deposit_to_nonexistent_account(self):
+		bank = Bank("MyBank")
+		with self.assertRaises(IndexError):
+			bank.deposit_to_account("1", 12)
+
+	def test_get_interest_of_nonexistent_account(self):
+		bank = Bank("MyBank")
+		with self.assertRaises(IndexError):
+			bank.get_account_interest_rate("1")
