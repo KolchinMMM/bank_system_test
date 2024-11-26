@@ -103,7 +103,7 @@
   1. ("1", "credit", 100, 10), apply_interest(200);
   2. ("1", "credit", 200, 10), apply_interest(200);
   3. ("1", "credit", -800, 10), apply_interest(200)
-  ("1", "credit", 100), apply_interest(200)
+  4. ("1", "credit", 100), apply_interest(200)
 * Ожидаемый результат: метод get_balance возвращает следующие суммы:
   1. 90
   2. 200
