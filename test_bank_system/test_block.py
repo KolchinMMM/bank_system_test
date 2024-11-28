@@ -108,6 +108,11 @@ class TestBankAccount(unittest.TestCase):
 		account.apply_interest()
 		self.assertEqual(account.get_balance(), 100)
 
+		account = BankAccount("1", "credit", 100)
+		account.set_credit_value(50)
+		account.apply_interest()
+		self.assertEqual(account.get_balance(), 100)
+
 	def test_get_interest(self):
 		account = BankAccount("1", "credit", 100, 10)
 		self.assertEqual(account.get_interest_rate(), 10)

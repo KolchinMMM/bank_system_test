@@ -41,5 +41,4 @@ class TestAttestation(unittest.TestCase):
 
 		for _ in range(20):
 			bank.apply_interest_to_account("1")
-		print(bank.get_account_balance("1"))
 		self.assertAlmostEqual(bank.get_account_balance("1"), 100 * (1.2**20))

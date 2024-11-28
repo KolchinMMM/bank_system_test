@@ -23,9 +23,6 @@ class Bank:
             raise IndexError("Счет с таким номером уже существует!")
 
     def deposit_to_account(self, account_number, amount):
-        """Вносит деньги на счет по номеру
-        :param account_number: номер счета, строка
-        :param amount: сумма, число > 0"""
         if amount <= 0:
             raise ValueError("Сумма должна быть больше нуля!")
         account = self.__accounts.get(account_number)
@@ -35,9 +32,6 @@ class Bank:
             raise IndexError(self.__not_found_account_error)
 
     def withdraw_from_account(self, account_number, amount):
-        """Снимает деньги с указанного счета.
-        :param account_number: номер аккаунта, строка
-        :param amount: сумма, число больше 0"""
         if amount <= 0:
             raise ValueError("Сумма должна быть больше нуля!")
         account = self.__accounts.get(account_number)
@@ -47,7 +41,6 @@ class Bank:
             raise IndexError(self.__not_found_account_error)
 
     def get_account_balance(self, account_number):
-        """Вывести баланс по номеру счета"""
         account = self.__accounts.get(account_number)
         if account:
             return account.get_balance()
@@ -55,7 +48,6 @@ class Bank:
             raise IndexError(self.__not_found_account_error)
 
     def apply_interest_to_all_accounts(self):
-        """Начислить проценты по всем счетам"""
         for account in self.__accounts.values():
             account.apply_interest()
 
@@ -67,7 +59,6 @@ class Bank:
             raise IndexError(self.__not_found_account_error)
 
     def set_account_interest_rate(self, account_number, rate):
-        """Установить новую процентную ставку для указанного счета."""
         account = self.__accounts.get(account_number)
         if account:
             account.set_interest_rate(rate)
@@ -104,4 +95,3 @@ class Bank:
             return account.get_credit_value()
         else:
             raise IndexError(self.__not_found_account_error)
-

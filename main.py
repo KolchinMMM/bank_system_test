@@ -4,13 +4,10 @@ from bank_account import BankAccount
 
 def main():
 	bank = Bank("Name")
-	bank.create_account("1","debit", 0, 0)
-	bank.deposit_to_account("1", 100)
-	bank.get_account_balance("1")
-	# print(bank.__accounts)
-
-	account = BankAccount("1", "credit", 100, 10)
-	print(account.__balance)
+	bank.create_account("1","credit", 100, 10)
+	bank.set_account_credit_value("1",50)
+	bank.apply_interest_to_all_accounts()
+	print(bank.get_account_balance("1"))
 
 
 
