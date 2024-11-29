@@ -15,7 +15,6 @@ class BankAccount:
         self.__balance = initial_balance
         self.__interest_rate = interest_rate
         self.__credit_value = 10000
-        self.__account_number = account_number
 
 
     def set_credit_value(self, value):
